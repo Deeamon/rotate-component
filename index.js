@@ -2,7 +2,17 @@ let captured = false; // Флаг, указывающий на то, что мы
 let mouseAngle = 0;
 let rotateAngle;
 
+let move = false;
+
+let coordX;
+let coordY;
+
 document.addEventListener('mousedown', function(event) {
+  let div = document.querySelector('.Container');
+  let blockData = div.getBoundingClientRect();
+  coordX = event.x - blockData.x;
+  coordY = event.y - blockData.y;
+
   switch (event.target.className) {
     case 'indicator in1':
       rotateAngle = 225;
@@ -16,6 +26,9 @@ document.addEventListener('mousedown', function(event) {
     case 'indicator in4':
       rotateAngle = 135;
       break;
+    case 'Container':
+      move = true;
+      break;
     default:
       return;
   }
@@ -24,6 +37,11 @@ document.addEventListener('mousedown', function(event) {
     captured = true;
     mouseAngle = getMouseAngle(event, rotateAngle);
     document.querySelector('body').classList.add('custom-cursor');
+  }
+
+  console.log('move', move);
+  if (move) {
+    moveElement(event);
   }
 });
 
@@ -49,12 +67,20 @@ const getMouseAngle = (event, rotateAngle) => {
   return calcAngle;
 };
 
-document.addEventListener('mousemove', function(event) {
-  if (!captured) return;
-  let rotateDeg = getMouseAngle(event, rotateAngle);
+const moveElement = event => {
+  document.querySelector('.Container').style.left = event.x - coordX + 'px';
+  console.log('event.x - coordX ', event.x - coordX);
+  document.querySelector('.Container').style.top = event.y - coordY + 'px';
+  console.log('event.y - coordY ', event.y - coordY);
+};
 
-  document.querySelector('.Container').style.transform =
-    'rotate(' + rotateDeg + 'deg)';
+document.addEventListener('mousemove', function(event) {
+  if (captured) {
+    let rotateDeg = getMouseAngle(event, rotateAngle);
+    document.querySelector('.Container').style.transform =
+      'rotate(' + rotateDeg + 'deg)';
+  }
+  if (move) moveElement(event);
 });
 
 document.addEventListener('mouseup', function(event) {
@@ -63,4 +89,6 @@ document.addEventListener('mouseup', function(event) {
     rotateAngle = undefined;
     document.querySelector('body').classList.remove('custom-cursor');
   }
+
+  if (move) move = false;
 });
