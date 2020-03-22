@@ -7,10 +7,9 @@ body {
   position: absolute;
   width: 100px;
   height: 100px;
-  /* margin-top: 20px;
-  margin-left: 20px; */
   background-image: url("https://yt3.ggpht.com/a/AGF-l7-uueDdRmZsJQOVmDZCeIjv8tU9swZd1pJYCw=s900-c-k-c0xffffffff-no-rj-mo");
   background-size: cover;
+  cursor: grab;
 }
 
 .indicator {
@@ -42,4 +41,8 @@ body {
 
 .custom-cursor {
   cursor: url("./rotate-cursor.png"), auto;
+}
+
+.cursor-grab {
+  cursor: grabbing;
 }

@@ -39,9 +39,9 @@ document.addEventListener('mousedown', function(event) {
     document.querySelector('body').classList.add('custom-cursor');
   }
 
-  console.log('move', move);
   if (move) {
     moveElement(event);
+    document.querySelector('.Container').classList.add('cursor-grab');
   }
 });
 
@@ -69,9 +69,7 @@ const getMouseAngle = (event, rotateAngle) => {
 
 const moveElement = event => {
   document.querySelector('.Container').style.left = event.x - coordX + 'px';
-  console.log('event.x - coordX ', event.x - coordX);
   document.querySelector('.Container').style.top = event.y - coordY + 'px';
-  console.log('event.y - coordY ', event.y - coordY);
 };
 
 document.addEventListener('mousemove', function(event) {
@@ -90,5 +88,8 @@ document.addEventListener('mouseup', function(event) {
     document.querySelector('body').classList.remove('custom-cursor');
   }
 
-  if (move) move = false;
+  if (move) {
+    move = false;
+    document.querySelector('.Container').classList.remove('cursor-grab');
+  }
 });
