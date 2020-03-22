@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.Container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+  margin-left: 20px;
+  background-image: url("https://yt3.ggpht.com/a/AGF-l7-uueDdRmZsJQOVmDZCeIjv8tU9swZd1pJYCw=s900-c-k-c0xffffffff-no-rj-mo");
+  background-size: cover;
+}
+
+.indicator {
+  position: absolute;
+  z-index: 100;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(149, 200, 248);
+  border: 1px solid rgb(46, 77, 255);
+  border-radius: 50%;
+  cursor: url("./rotate-cursor.png"), auto;
+}
+.in1 {
+  top: -5px;
+  left: -5px;
+}
+.in2 {
+  top: -5px;
+  right: -5px;
+}
+.in3 {
+  right: -5px;
+  bottom: -5px;
+}
+.in4 {
+  bottom: -5px;
+  left: -5px;
+}
+
+.custom-cursor {
+  cursor: url("./rotate-cursor.png"), auto;
+}
